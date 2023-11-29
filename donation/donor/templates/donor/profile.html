@@ -1,0 +1,91 @@
+{%extends 'donor/base.html'%}
+{%load crispy_forms_tags%}
+
+{%block header%}
+Profile
+{%endblock%}
+
+
+{%block content%}
+
+<section class="vh-100" style="background-color: #f4f5f7;">
+  {%for rows in profile%}
+  <div class="container py-5 h-100 d-grid gap-2">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              {%if rows.image%}
+              <img src="{{rows.image.url}}" class="img-thumbnail">
+
+              {%else%}
+              <img src="/media/image/223.jpg" class="img-thumbnail">
+                   {%endif%}
+                alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              <h5><b>{{rows.user.username}}</b></h5>
+              <h5><b>{{rows.age}}</b></h5>
+              <p>Web Designer</p>
+              <i class="far fa-edit mb-5"></i>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h2><b>Information</b></h2>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Name</h6>
+                    <p class="text-muted"><h5><b>{{rows.user.username|capfirst}}</b></h5></p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Last</h6>
+                    <p class="text-muted"><h5><b></b></h5</p>
+                  </div>
+                   <div class="col-7 mb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted"><h5><b>{{rows.user.email}}</b></h5></p>
+                  </div>
+                  <div class="col-7 mb-3">
+                    <h6>Phone</h6>
+                    <p class="text-muted"><h5><b>{{rows.phone}}</b></h5</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Sex</h6>
+                    <p class="text-muted"><h5><b>{{rows.sex}}</b></h5</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Address</h6>
+                    <p class="text-muted"><h5><b>{{rows.address}}</b></h5</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Age</h6>
+                    <p class="text-muted"><h5><b>{{rows.age}}</b></h5</p>
+                  </div>
+                </div>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1 d-grid gap-2 text-center">
+                  <div class="col-6 mb-3 d-grid gap-2 text-center">
+
+                    <a href="{%url 'profile_edit' rows.pk%}" class="btn btn-primary btn-sm text-center" > Update Profile</a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+</section>
+
+
+<style>
+  .img-thumbnail{
+  width: auto;
+  height: 200px;
+  }
+</style>
+{%endblock%}
